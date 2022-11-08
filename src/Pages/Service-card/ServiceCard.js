@@ -1,22 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
-  const { pic, name, charge } = service;
+  const { pic, name, charge, _id } = service;
   return (
-    <div className="card card-compact w-96 bg-base-100 shadow-xl">
-      <figure>
-        <img src={pic} alt="nopic" />
-      </figure>
+    <div className="card card-compact w-96 bg-base-100 shadow-xl text-center">
       <div className="card-body">
-        <h2 className="card-title">{name}</h2>
-        <p className="text-2xl text-orange-600 font-semibold">
-          Price: ${charge}
-        </p>
-        {/* <div className="card-actions justify-end">
-                    <Link to={`/checkout/${_id}`}>
-                        <button className="btn btn-primary">Checkout</button>
-                    </Link>
-                </div> */}
+        <img src={pic} alt="nopic" />
+        <h2 className="card-title text-3xl text-cyan-300">{name}</h2>
+        <p className="text-2xl text-red-600 font-semibold">Charge: ${charge}</p>
+        <Link to={`/servicedetails/${_id}`}>
+          <button className="btn btn-secondary">Details</button>
+        </Link>
       </div>
     </div>
   );

@@ -12,11 +12,14 @@ const Services = () => {
   return (
     <div>
       <div className="text-center mb-4">
-        <p className="text-2xl font-bold text-orange-600">Services</p>
-        <h2 className="text-5xl font-semibold">Our Service Area</h2>
+        <h2 className="text-4xl font-bold">Medical Service</h2>
         <p>
-          the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don't look even slightly believable.{" "}
+          The well-known health website has quite a collection of blogs,we
+          identified 75 of our favorite medical blogs everyone in the field can.
+          but WebMD Doctors stands out for how relatable it is. Each post is
+          penned by a physician, and the topics can be about parenting, heart
+          medication, or how even health professionals struggle with healthy
+          eating.
         </p>
       </div>
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
