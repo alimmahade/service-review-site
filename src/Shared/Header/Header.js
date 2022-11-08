@@ -68,37 +68,35 @@ const Header = () => {
             <li>{menuItems}</li>
           </ul>
         </div>
-        <div>
-          {user?.uid ? (
-            <div>
-              <p>Welcome: {user.displayName}</p>
-              <span>
-                <img
-                  title={user.displayName}
-                  className="w-3 h-3"
-                  src={user.photoURL}
-                  alt=""
-                  referrerPolicy="no-referr"
-                />
-              </span>
-            </div>
-          ) : (
-            <p>No User</p>
-          )}
-
-          {user?.uid ? (
-            <button onClick={handleLogOut} className="btn btn-secondary">
-              Log Out
-            </button>
-          ) : (
-            <NavLink className="btn btn-ghost normal-case text-xl" to="login">
-              Login
-            </NavLink>
-          )}
-        </div>
+        <div></div>
         <div className="navbar-end">
           <Link to="/" className="btn">
-            Get started
+            {user?.uid ? (
+              <div>
+                <p>Welcome: {user.displayName}</p>
+                <span>
+                  <img
+                    title={user.displayName}
+                    className="w-3 h-3"
+                    src={user.photoURL}
+                    alt=""
+                    referrerPolicy="no-referr"
+                  />
+                </span>
+              </div>
+            ) : (
+              <p>No User</p>
+            )}
+
+            {user?.uid ? (
+              <button onClick={handleLogOut} className="btn btn-secondary">
+                Log Out
+              </button>
+            ) : (
+              <NavLink className="btn btn-ghost normal-case text-xl" to="login">
+                Login
+              </NavLink>
+            )}
           </Link>
         </div>
       </div>

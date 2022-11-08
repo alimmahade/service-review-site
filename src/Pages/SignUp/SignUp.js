@@ -80,12 +80,10 @@ const SignUp = () => {
               Please Log in
             </Link>
           </p>
-          <p>Sign in With</p>
+
           <span className="m-2">
-            <button
-              onClick={handleGoogleSignIn}
-              className="btn btn-outline m-1"
-            >
+            <p>Sign in With Google </p>
+            <button onClick={handleGoogleSignIn} className="btn btn-primary">
               <FaGoogle />
             </button>
           </span>
