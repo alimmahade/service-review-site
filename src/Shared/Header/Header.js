@@ -1,7 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
+import favicon from "../../asset/favicon.png";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
   const menuItems = (
     <>
       <li>
@@ -15,26 +24,14 @@ const Header = () => {
       </li>
     </>
   );
+
   return (
     <div>
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+              <img className="h-10 w-auto" src={favicon} alt="" />
             </label>
             <ul
               tabIndex={0}
@@ -63,14 +60,41 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost normal-case text-xl">
-            daisyUI
-          </Link>
+          <img className="h-10 w-auto" src={favicon} alt="" />
+          <h3 className="text-2xl">MediGuide</h3>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
             <li>{menuItems}</li>
           </ul>
+        </div>
+        <div>
+          {user?.uid ? (
+            <div>
+              <p>Welcome: {user.displayName}</p>
+              <span>
+                <img
+                  title={user.displayName}
+                  className="w-3 h-3"
+                  src={user.photoURL}
+                  alt=""
+                  referrerPolicy="no-referr"
+                />
+              </span>
+            </div>
+          ) : (
+            <p>No User</p>
+          )}
+
+          {user?.uid ? (
+            <button onClick={handleLogOut} className="btn btn-secondary">
+              Log Out
+            </button>
+          ) : (
+            <NavLink className="btn btn-ghost normal-case text-xl" to="login">
+              Login
+            </NavLink>
+          )}
         </div>
         <div className="navbar-end">
           <Link to="/" className="btn">
