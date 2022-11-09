@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import MoreHealth from "../MoreHealth";
+import ReactPhoto from "../ReactPhoto";
 
 import Slider from "../Slider/Slider";
 
@@ -48,6 +49,7 @@ const Home = () => {
         </Link>
       </div>
       <MoreHealth></MoreHealth>
+      <ReactPhoto></ReactPhoto>
     </div>
   );
 };
