@@ -10,28 +10,43 @@ import picf from "../asset/photogalary/6.jpg";
 export default function ReactPhoto() {
   return (
     <div>
-      <h3 className="text-3xl m-4">Our Activities</h3>
-      <div className="flex m-4 p-4">
-        <PhotoProvider className="m-4 p-4">
-          <PhotoView src={pic}>
-            <img src={pic} alt="" />
-          </PhotoView>
+      <h3 className="text-3xl m-4 text-white">Our Activities</h3>
+      <div className="flex m-2 p-2">
+        <PhotoProvider className="m-2 p-2">
+          <div className="m-4 p-4">
+            <PhotoView src={pic}>
+              <img src={pic} alt="" />
+            </PhotoView>
+          </div>
 
-          <PhotoView src={picc}>
-            <img src={picc} alt="" />
-          </PhotoView>
+          <div className="m-2 p-2">
+            <PhotoView src={picc}>
+              <img src={picc} alt="" />
+            </PhotoView>
+          </div>
 
-          <PhotoView src={picd}>
-            <img src={picd} alt="" />
-          </PhotoView>
+          <div className="m-2 p-2">
+            <PhotoView src={picd}>
+              <img src={picd} alt="" />
+            </PhotoView>
+          </div>
 
-          <PhotoView src={pice}>
-            <img src={pice} alt="" />
-          </PhotoView>
+          <div className="m-2 p-2">
+            <PhotoView src={pice}>
+              <img src={pice} alt="" />
+            </PhotoView>
+          </div>
 
-          <PhotoView src={picf}>
-            <img src={picf} alt="" />
-          </PhotoView>
+          <div className="m-2 p-2">
+            <PhotoView src={picf}>
+              <img src={picf} alt="" />
+            </PhotoView>
+          </div>
+          <div className="m-2 p-2">
+            <PhotoView src={picc}>
+              <img src={picc} alt="" />
+            </PhotoView>
+          </div>
         </PhotoProvider>
       </div>
     </div>

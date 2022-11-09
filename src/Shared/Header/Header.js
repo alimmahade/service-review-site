@@ -61,7 +61,7 @@ const Header = () => {
             </ul>
           </div>
           <img className="h-10 w-auto" src={favicon} alt="" />
-          <h3 className="text-2xl">MediGuide</h3>
+          <h3 className="text-2xl text-green-400">MediGuide</h3>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">

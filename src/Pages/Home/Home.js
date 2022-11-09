@@ -9,7 +9,7 @@ const Home = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    fetch("http://localhost:5000")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
@@ -31,11 +31,13 @@ const Home = () => {
           {services.map((service) => (
             <p key={service._id} service={service}>
               <div className="card card-compact w-96 bg-base-100 shadow-xl text-center">
-                <figure>
-                  <img src={service.pic} alt="nopic" />
-                </figure>
                 <div className="card-body align-middle">
-                  <h2 className="card-title align-middle">{service.name}</h2>
+                  <figure>
+                    <img src={service.pic} alt="nopic" />
+                  </figure>
+                  <h2 className="card-title align-middle justify-center">
+                    {service.name}
+                  </h2>
                   <p className="text-2xl text-red-600 font-semibold">
                     Charge: ${service.charge}
                   </p>
@@ -44,9 +46,11 @@ const Home = () => {
             </p>
           ))}
         </div>
-        <Link to="/services">
-          <button className="btn btn-secondary">See All</button>
-        </Link>
+        <div className="m-4 p-4">
+          <Link to="/services">
+            <button className="btn btn-secondary">See All Services</button>
+          </Link>
+        </div>
       </div>
       <MoreHealth></MoreHealth>
       <ReactPhoto></ReactPhoto>

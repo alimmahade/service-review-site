@@ -8,12 +8,12 @@ const Footer = () => {
       <footer className="footer p-10 bg-base-200 text-base-content">
         <div>
           <img className="h-10 w-auto" src={favicon} alt="" />
-          <h3 className="text-2xl">MediGuide</h3>
+          <h3 className="text-2xl text-green-400">MediGuide</h3>
         </div>
         <div>
           <span className="footer-title">Services</span>
           <Link to={""} className="link link-hover">
-            Branding
+            Medical
           </Link>
         </div>
         <div>
@@ -24,9 +24,6 @@ const Footer = () => {
         </div>
         <div>
           <span className="footer-title">Legal</span>
-          <Link to={""} className="link link-hover">
-            Terms of use
-          </Link>
           <Link to={""} className="link link-hover">
             Privacy policy
           </Link>
