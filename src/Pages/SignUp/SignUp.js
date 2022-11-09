@@ -1,11 +1,15 @@
 import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ContextApi } from "../../Context/AuthProvider/AuthProvider";
 import { FaGoogle } from "react-icons/fa";
 
 const SignUp = () => {
-  const { createUser, signInWithGoogle } = useContext(AuthContext);
+  const { createUser, signInWithGoogle } = useContext(ContextApi);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
   const handleSignUp = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -13,8 +17,8 @@ const SignUp = () => {
     const password = form.password.value;
     createUser(email, password)
       .then((result) => {
-        const user = result.user;
-        console.log(user);
+        form.reset();
+        navigate(from, { replace: true });
       })
       .catch((err) => console.log(err));
   };
@@ -23,7 +27,7 @@ const SignUp = () => {
       .then((result) => {
         const cretential = GoogleAuthProvider.credentialFromResult(result);
         const user = result.user;
-        console.log(user);
+        console.log(user, cretential);
       })
       .catch((error) => console.error(error));
   };
@@ -69,22 +73,22 @@ const SignUp = () => {
               />
             </div>
             <div className="form-control mt-6">
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-secondary">
                 Sign Up
               </button>
             </div>
           </form>
           <p>
-            Alredy Have an Account ?
-            <Link to="/login" className="text-orange-700">
+            Have an Account?
+            <Link to="/login" className="text-red-400">
               Please Log in
             </Link>
           </p>
 
           <span className="m-2">
-            <p>Sign in With Google </p>
-            <button onClick={handleGoogleSignIn} className="btn btn-primary">
-              <FaGoogle />
+            <button onClick={handleGoogleSignIn} className="btn btn-ghost">
+              <p className="text-orange-500">Sign in With Google </p>
+              <FaGoogle className="m-2"></FaGoogle>
             </button>
           </span>
         </div>

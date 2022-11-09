@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ContextApi } from "../../Context/AuthProvider/AuthProvider";
 
 const Login = () => {
-  // const { Login } = useContext(AuthContext);
-  const location = useLocation();
+  const { logInUser } = useContext(ContextApi);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (event) => {
     event.preventDefault();
+
+    const form = event.target;
+    const password = form.password.value;
+    const email = form.email.value;
+    console.log(email, password);
+    logInUser(email, password)
+      .then((result) => {
+        form.reset();
+        navigate(from, { replace: true });
+
+        // const user=result.user;
+        // console.log(user)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -21,7 +38,8 @@ const Login = () => {
                 <span className="label-text">Email</span>
               </label>
               <input
-                type="text"
+                name="email"
+                type="email"
                 placeholder="email"
                 className="input input-bordered"
               />
@@ -31,18 +49,17 @@ const Login = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                type="text"
+                name="password"
+                type="password"
                 placeholder="password"
                 className="input input-bordered"
               />
               <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
+                <Link to="/signup">Forgot password?</Link>
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
+              <button className="btn btn-secondary">Login</button>
             </div>
           </form>
           {/* new user Register */}

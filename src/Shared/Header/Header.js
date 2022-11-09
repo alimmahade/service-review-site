@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
+import { ContextApi } from "../../Context/AuthProvider/AuthProvider";
 import favicon from "../../asset/favicon.png";
 
 const Header = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(ContextApi);
   console.log(user);
   const handleLogOut = () => {
     logOut()
@@ -79,7 +79,7 @@ const Header = () => {
                     title={user.displayName}
                     className="w-3 h-3"
                     src={user.photoURL}
-                    alt=""
+                    alt="img"
                     referrerPolicy="no-referr"
                   />
                 </span>
@@ -98,6 +98,7 @@ const Header = () => {
               </NavLink>
             )}
           </Link>
+          <Link to="/addservice">AddService</Link>
         </div>
       </div>
     </div>
