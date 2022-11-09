@@ -13,14 +13,6 @@ const Services = () => {
     <div>
       <div className="text-center mb-4">
         <h2 className="text-4xl font-bold">Medical Service</h2>
-        <p>
-          The well-known health website has quite a collection of blogs,we
-          identified 75 of our favorite medical blogs everyone in the field can.
-          but WebMD Doctors stands out for how relatable it is. Each post is
-          penned by a physician, and the topics can be about parenting, heart
-          medication, or how even health professionals struggle with healthy
-          eating.
-        </p>
       </div>
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => (

@@ -13,7 +13,7 @@ export default function ReactPhoto() {
       <h3 className="text-3xl m-4 text-white">Our Activities</h3>
       <div className="flex m-2 p-2">
         <PhotoProvider className="m-2 p-2">
-          <div className="m-4 p-4">
+          <div className="m-2 p-2">
             <PhotoView src={pic}>
               <img src={pic} alt="" />
             </PhotoView>
