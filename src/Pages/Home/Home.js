@@ -14,7 +14,7 @@ const Home = () => {
       .then((data) => setServices(data));
   }, []);
   return (
-    <div>
+    <div className="p-2">
       <Slider></Slider>
       <div>
         <div className="text-center mb-4">
@@ -33,12 +33,19 @@ const Home = () => {
               <div className="card card-compact w-96 bg-base-100 shadow-xl text-center">
                 <div className="card-body align-middle">
                   <figure>
-                    <img src={service.pic} alt="nopic" />
+                    <img
+                      style={{ height: "200px", width: "300px" }}
+                      src={service.pic}
+                      alt="nopic"
+                    />
                   </figure>
-                  <h2 className="card-title align-middle justify-center">
+                  <h2 className="card-title text-secondary justify-center">
                     {service.name}
                   </h2>
-                  <p className="text-2xl text-red-600 font-semibold">
+                  <p className="justify-center">
+                    {service.details.slice(0, 50)}
+                  </p>
+                  <p className="text-2xl text-white font-semibold">
                     Charge: ${service.charge}
                   </p>
                 </div>
