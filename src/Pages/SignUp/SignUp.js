@@ -13,9 +13,12 @@ const SignUp = () => {
   const handleSignUp = (event) => {
     event.preventDefault();
     const form = event.target;
+    const name = form.name.value;
+    console.log(name);
     const email = form.email.value;
     const password = form.password.value;
-    createUser(email, password)
+    console.log(name, email, password);
+    createUser(name, email, password)
       .then((result) => {
         form.reset();
         navigate(from, { replace: true });
