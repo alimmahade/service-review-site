@@ -12,17 +12,28 @@ const Header = () => {
       .catch((error) => console.error(error));
   };
   const menuItems = (
-    <>
+    <div className="font-semibold text-xl">
       <li>
         <Link to="/">Home</Link>
       </li>
-      <li>
-        <Link to="/login">LogIn</Link>
-      </li>
+      {user?.uid ? (
+        <li>
+          <Link to="myreview">My Review</Link>
+        </li>
+      ) : (
+        <li>
+          <Link to="/login">Log In</Link>
+        </li>
+      )}
+      {user?.uid ? (
+        <Link to="/addservice">Add Service</Link>
+      ) : (
+        <Link to="/signup">Sign Up</Link>
+      )}
       <li>
         <Link to="/blog">Blog</Link>
       </li>
-    </>
+    </div>
   );
 
   return (
@@ -70,35 +81,15 @@ const Header = () => {
         </div>
         <div></div>
         <div className="navbar-end">
-          <Link to="/" className="btn">
-            {user?.uid ? (
-              <div>
-                <p>Welcome: {user.displayName}</p>
-                <span>
-                  <img
-                    title={user.displayName}
-                    className="w-3 h-3"
-                    src={user.photoURL}
-                    alt="img"
-                    referrerPolicy="no-referr"
-                  />
-                </span>
-              </div>
-            ) : (
-              <p>No User</p>
-            )}
-
-            {user?.uid ? (
-              <button onClick={handleLogOut} className="btn btn-secondary">
-                Log Out
-              </button>
-            ) : (
-              <NavLink className="btn btn-ghost normal-case text-xl" to="login">
-                Login
-              </NavLink>
-            )}
-          </Link>
-          <Link to="/addservice">AddService</Link>
+          {user?.uid ? (
+            <button onClick={handleLogOut} className="btn btn-secondary">
+              Log Out
+            </button>
+          ) : (
+            <NavLink className="btn btn-ghost normal-case text-xl" to="login">
+              no user
+            </NavLink>
+          )}
         </div>
       </div>
     </div>

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import MoreHealth from "../MoreHealth";
 import ReactPhoto from "../ReactPhoto";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 
 import Slider from "../Slider/Slider";
 
@@ -33,11 +35,15 @@ const Home = () => {
               <div className="card card-compact w-96 bg-base-100 shadow-xl text-center">
                 <div className="card-body align-middle">
                   <figure>
-                    <img
-                      style={{ height: "200px", width: "300px" }}
-                      src={service.pic}
-                      alt="nopic"
-                    />
+                    <PhotoProvider>
+                      <PhotoView src={service.pic}>
+                        <img
+                          src={service.pic}
+                          style={{ height: "200px", width: "300px" }}
+                          alt=""
+                        />
+                      </PhotoView>
+                    </PhotoProvider>
                   </figure>
                   <h2 className="card-title text-secondary justify-center">
                     {service.name}

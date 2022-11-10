@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ContextApi } from "../../Context/AuthProvider/AuthProvider";
 
-const Review = () => {
+const UserReview = () => {
+  const { user } = useContext(ContextApi);
+  const { displayName, email, photoURL } = user;
+  console.log(user);
   return (
-    <div className="bg-red-600">
-      <h2 className="text-4xl font-semibold text-white m-4 p-4">
+    <div>
+      <h2 className="bg-secondary text-4xl font-semibold text-white m-4 p-4">
         Coustomer Review
       </h2>
       <div className="overflow-x-auto w-full">
@@ -11,9 +15,7 @@ const Review = () => {
           <thead>
             <tr>
               <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
+                <label></label>
               </th>
               <th>Name</th>
               <th>Review</th>
@@ -24,23 +26,17 @@ const Review = () => {
           <tbody>
             <tr>
               <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
+                <label></label>
               </th>
               <td>
                 <div className="flex items-center space-x-3">
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        src="/tailwind-css-component-profile-2@56w.png"
-                        alt="Avatar Tailwind CSS Component"
-                      />
+                      <img src={photoURL} alt="Avatar Tailwind CSS Component" />
                     </div>
                   </div>
                   <div>
-                    <div className="font-bold">Hart Hagerty</div>
-                    <div className="text-sm opacity-50">United States</div>
+                    <div className="font-bold">{displayName}</div>
                   </div>
                 </div>
               </td>
@@ -51,7 +47,7 @@ const Review = () => {
                   Desktop Support Technician
                 </span>
               </td>
-              <td>Purple</td>
+              <td>{email}</td>
             </tr>
           </tbody>
         </table>
@@ -60,4 +56,4 @@ const Review = () => {
   );
 };
 
-export default Review;
+export default UserReview;

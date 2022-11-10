@@ -5,7 +5,8 @@ import { ContextApi } from "../../Context/AuthProvider/AuthProvider";
 import { FaGoogle } from "react-icons/fa";
 
 const SignUp = () => {
-  const { createUser, signInWithGoogle } = useContext(ContextApi);
+  const { createUser, signInWithGoogle, updateUserProfile } =
+    useContext(ContextApi);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -13,18 +14,28 @@ const SignUp = () => {
   const handleSignUp = (event) => {
     event.preventDefault();
     const form = event.target;
+
     const name = form.name.value;
-    console.log(name);
+    const img = form.img.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password);
-    createUser(name, email, password)
+    console.log(img, name, email, password);
+
+    createUser(email, password)
       .then((result) => {
         form.reset();
+        updateUserProfile(name, img)
+          .then((res) => {
+            alert("ok");
+            const user = res.user;
+            console.log(user);
+          })
+          .catch((err) => console.log(err));
         navigate(from, { replace: true });
       })
       .catch((err) => console.log(err));
   };
+
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
@@ -51,6 +62,19 @@ const SignUp = () => {
                 required
               />
             </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Img</span>
+              </label>
+              <input
+                type="text"
+                placeholder="img"
+                className="input input-bordered"
+                name="img"
+                required
+              />
+            </div>
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
