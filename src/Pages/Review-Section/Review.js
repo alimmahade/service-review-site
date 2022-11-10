@@ -1,12 +1,22 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ContextApi } from "../../Context/AuthProvider/AuthProvider";
 
-const UserReview = () => {
+const Review = () => {
   const { user } = useContext(ContextApi);
-  const { displayName, email, photoURL } = user;
+  const { displayName, email, photoURL, uid } = user;
   console.log(user);
   return (
     <div>
+      <div>
+        {user?.uid ? (
+          <h2>Please Give Review</h2>
+        ) : (
+          <h2>
+            Please Log in to give Review<Link to="/login">Log In</Link>
+          </h2>
+        )}
+      </div>
       <h2 className="bg-secondary text-4xl font-semibold text-white m-4 p-4">
         Coustomer Review
       </h2>
@@ -56,4 +66,4 @@ const UserReview = () => {
   );
 };
 
-export default UserReview;
+export default Review;
