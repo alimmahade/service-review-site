@@ -7,7 +7,7 @@ const AddService = () => {
     event.preventDefault();
     console.log(service);
 
-    fetch("http://localhost:5000/addservice", {
+    fetch("https://as-ph-11-ser.vercel.app/addservice", {
       method: "POST", // or 'PUT'
       headers: {
         "content-type": "application/json",
@@ -38,7 +38,7 @@ const AddService = () => {
       <form onSubmit={adduser}>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Service Name</span>
+            <span className="text-lg font-bold text-red-500">Service Name</span>
           </label>
           <input
             onBlur={handelBlur}
@@ -52,7 +52,9 @@ const AddService = () => {
 
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Service image</span>
+            <span className="text-lg font-bold text-red-500">
+              Service image
+            </span>
           </label>
           <input
             onBlur={handelBlur}
@@ -66,7 +68,9 @@ const AddService = () => {
 
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Service Details</span>
+            <span className="text-lg font-bold text-red-500">
+              Service Details
+            </span>
           </label>
           <input
             onBlur={handelBlur}
@@ -79,19 +83,19 @@ const AddService = () => {
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Service Details</span>
+            <span className="text-lg font-bold text-red-500">Price</span>
           </label>
           <input
             onBlur={handelBlur}
             type="text"
             placeholder="price"
             className="input input-bordered"
-            name="price"
+            name="charge"
             required
           />
         </div>
 
-        <button className="btn-secondary"> Add service </button>
+        <button className="btn btn-secondary"> Add service </button>
       </form>
     </div>
   );

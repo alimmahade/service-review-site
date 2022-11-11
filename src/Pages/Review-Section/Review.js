@@ -1,66 +1,131 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ContextApi } from "../../Context/AuthProvider/AuthProvider";
 
 const Review = () => {
   const { user } = useContext(ContextApi);
+  console.log(user?.uid);
   const { displayName, email, photoURL, uid } = user;
-  console.log(user);
+  // console.log(user);
+  // const addreview = (event) => {
+  //   event.preventdefault();
+  //   console.log(event);
+  // };
+  const handleAddReview = (event) => {
+    event.preventDefault();
+    // console.log(event);
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const img = form.img.value;
+    const reviewText = form.review.value;
+    const reviewInfo = {
+      userimg: img,
+      username: name,
+      useremail: email,
+      userreview: reviewText,
+    };
+    fetch("https://as-ph-11-ser.vercel.app/review", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reviewInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+    // console.log(reviewInfo);
+  };
+  const [clientReview, setClientReview] = useState([]);
+  console.log(clientReview);
+  useEffect(() => {
+    fetch("https://as-ph-11-ser.vercel.app/review")
+      .then((res) => res.json())
+      .then((data) => setClientReview(data));
+  }, []);
   return (
     <div>
-      <div>
-        {user?.uid ? (
-          <h2>Please Give Review</h2>
-        ) : (
-          <h2>
-            Please Log in to give Review<Link to="/login">Log In</Link>
-          </h2>
-        )}
-      </div>
+      {user?.uid ? (
+        <div>
+          <form onSubmit={handleAddReview} className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">User Email</span>
+              </label>
+              <input
+                defaultValue={email}
+                name="email"
+                type="text"
+                placeholder="email"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">User Name</span>
+              </label>
+              <input
+                defaultValue={displayName}
+                name="name"
+                type="text"
+                placeholder="name"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Image</span>
+              </label>
+              <input
+                defaultValue={photoURL}
+                name="img"
+                type="text"
+                placeholder="img link"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">type review</span>
+              </label>
+              <textarea
+                name="review"
+                className="textarea textarea-primary h-0"
+                placeholder="type review"
+              ></textarea>
+            </div>
+            <div className="form-control mt-6">
+              <button className="btn btn-secondary">Add Review</button>
+            </div>
+          </form>
+        </div>
+      ) : (
+        <Link to="/login">
+          <button>Log in</button>
+        </Link>
+      )}
+
       <h2 className="bg-secondary text-4xl font-semibold text-white m-4 p-4">
         Coustomer Review
       </h2>
+
       <div className="overflow-x-auto w-full">
-        <table className="table w-full">
-          <thead>
-            <tr>
-              <th>
-                <label></label>
-              </th>
-              <th>Name</th>
-              <th>Review</th>
-              <th>Email</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>
-                <label></label>
-              </th>
-              <td>
-                <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img src={photoURL} alt="Avatar Tailwind CSS Component" />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-bold">{displayName}</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Zemlak, Daniel and Leannon
-                <br />
-                <span className="badge badge-ghost badge-sm">
-                  Desktop Support Technician
+        {clientReview.map((userReview) => (
+          <div key={userReview._id}>
+            <div className="flex justify-between my-9 border-2">
+              <div className="flex">
+                <img src={userReview.userimg} alt="" />
+                <span>
+                  <p>{userReview.username}</p>
+                  <p>{userReview.useremail}</p>
                 </span>
-              </td>
-              <td>{email}</td>
-            </tr>
-          </tbody>
-        </table>
+              </div>
+              <div>
+                <p>{userReview.userreview}</p>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
